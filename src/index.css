@@ -1,3 +1,285 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Animations personnalisées */
+/* Animation de flottement lent */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes float-slow-reverse {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(15px); }
+}
+
+/* Animation de flottement vers le bas pour les flocons */
+@keyframes float-down {
+  0% { transform: translateY(-20px); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Animation de battement de coeur */
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.3); }
+}
+
+/* Animation de ping lent */
+@keyframes ping-slow {
+  75%, 100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+/* Animation de rotation lente */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-slow-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+/* Animation d'apparition progressive */
+@keyframes fade-in-delay-100 {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-delay-200 {
+  0%, 30% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-delay-300 {
+  0%, 50% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-delay-400 {
+  0%, 70% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-delay-500 {
+  0%, 90% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-delay-600 {
+  0%, 80% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-delay-700 {
+  0%, 90% { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Animation de flottement avec délai */
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+.animate-float-slow-reverse {
+  animation: float-slow-reverse 7s ease-in-out infinite;
+}
+
+.animate-float-down {
+  position: absolute;
+  animation: float-down linear infinite;
+}
+
+.animate-beat {
+  animation: beat 1.5s ease-in-out infinite;
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin-slow-reverse 25s linear infinite;
+}
+
+.animate-fade-in-delay-100 {
+  animation: fade-in-delay-100 1s ease-out forwards;
+}
+
+.animate-fade-in-delay-200 {
+  animation: fade-in-delay-200 1.5s ease-out forwards;
+}
+
+.animate-fade-in-delay-300 {
+  animation: fade-in-delay-300 2s ease-out forwards;
+}
+
+.animate-fade-in-delay-400 {
+  animation: fade-in-delay-400 2.5s ease-out forwards;
+}
+
+.animate-fade-in-delay-500 {
+  animation: fade-in-delay-500 3s ease-out forwards;
+}
+
+.animate-fade-in-delay-600 {
+  animation: fade-in-delay-600 3.5s ease-out forwards;
+}
+
+.animate-fade-in-delay-700 {
+  animation: fade-in-delay-700 4s ease-out forwards;
+}
+
+/* Animation pour le survol des boutons */
+.hover\:animate-float:hover {
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Animation pour les éléments aimés */
+.animate-loved {
+  animation: pulse-slow 1.5s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(255, 82, 82, 0.6);
+}
+
+/* Animation de glissement vers le haut */
+.animate-slide-up {
+  animation: slide-up 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes slide-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes confetti-slow {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Classes d'animation */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 4s ease-in-out infinite;
+}
+
+/* Animation de confettis */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  animation: confetti-slow 3s ease-in-out forwards;
+}
+
+/* Animation du gâteau */
+@keyframes cake-bounce {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+.animate-cake-bounce {
+  animation: cake-bounce 3s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+/* Animation de vague pour le ruban */
+@keyframes ribbon-wave {
+  0%, 100% { transform: rotate(30deg); }
+  50% { transform: rotate(45deg); }
+}
+
+.animate-ribbon-wave {
+  animation: ribbon-wave 2s ease-in-out infinite;
+  transform-origin: top right;
+}
+
+/* Animation de lueur pour le texte */
+@keyframes text-glow {
+  0%, 100% { text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+  50% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.9); }
+}
+
+.animate-text-glow {
+  animation: text-glow 2s ease-in-out infinite;
+}
+
+/* Animation de flottement pour les éléments */
+@keyframes float-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-float-up {
+  animation: float-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+/* Délais d'animation pour les éléments */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
+
+/* Styles de base */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +287,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f9fa;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Effet de survol pour les cartes */
+.hover\:scale-105 {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.03);
+}
+
+/* Effet de lueur au survol */
+.group:hover .group-hover\:opacity-5 {
+  opacity: 0.1;
+  transition: opacity 0.5s ease-in-out;
 }
