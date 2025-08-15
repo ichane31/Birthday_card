@@ -1,10 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { StarIcon, HeartIcon, SparklesIcon, Music, Gauge, Flower2 } from 'lucide-react'
 
 function BirthdayMessage({ name }: { name: string }) {
     const [isLoved, setIsLoved] = useState(false)
     const [snowflakes, setSnowflakes] = useState<Array<{id: number, left: string, size: number, delay: string, duration: string}>>([])
     const [isPlaying, setIsPlaying] = useState(false)
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const songUrl = '../data/song.mp3'
+
+
+    // Initialiser l'audio une seule fois
+    if (!audioRef.current) {
+        audioRef.current = new Audio(songUrl);
+    }
 
     useEffect(() => {
         // Créer des flocons de neige
@@ -19,9 +27,18 @@ function BirthdayMessage({ name }: { name: string }) {
     }, [])
 
     const toggleMusic = () => {
-        setIsPlaying(!isPlaying)
-        // Ici, vous pouvez ajouter la logique pour jouer/arrêter la musique
-    }
+        if (!audioRef.current) return;
+
+        if (isPlaying) {
+            audioRef.current.pause();
+        } else {
+            audioRef.current.play();
+        }
+        
+        setIsPlaying(!isPlaying);
+    };
+
+    console.log(isPlaying)
 
     return (
         <div className="bg-gradient-to-br from-red-800 to-red-900 rounded-lg shadow-xl p-8 mb-10 transform transition-all duration-500 hover:shadow-red-400/30 animate-slide-up border border-red-500/30 relative overflow-hidden group">
@@ -44,7 +61,7 @@ function BirthdayMessage({ name }: { name: string }) {
             
             {/* Bouton de musique */}
             <button 
-                onClick={toggleMusic}
+                onClick={() => toggleMusic()}
                 className={`absolute top-4 right-4 p-2 rounded-full ${isPlaying ? 'bg-red-700' : 'bg-red-600/50 hover:bg-red-700'} transition-colors duration-300 z-20`}
                 title={isPlaying ? 'Arrêter la musique' : 'Jouer de la musique'}
             >
